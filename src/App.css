@@ -26,3 +26,20 @@
 .strike {
   text-decoration: line-through;
 }
+
+.Recipe-list {
+  text-align: left;
+  margin: 20px 0 0 20px;
+  padding-left: 10px;
+  width: 45%;
+  border: 1px solid black;
+}
+
+.Recipe-list .recipe-list-item {
+  text-decoration: underline;
+  cursor: pointer;
+  width: fit-content;
+  padding: 5px;
+}
+
+

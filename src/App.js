@@ -35,7 +35,7 @@ const App = props =>
 
 const Search = props =>
   (
-    <div className="searchContainer">
+    <div className="Search-container">
       <input type="text" placeholder="enter ingredient" value={props.searchFieldValue} onChange={props.updateSearchFieldValue} />
       <button 
         type="button" 
@@ -46,8 +46,9 @@ const Search = props =>
 
 const RecipeList = props =>
   (
-    <div>
-      {props.recipeList.map(recipe => <h3 key={recipe.uri}>name: {recipe.label} calories: {recipe.calories}</h3>)}
+    <div className="Recipe-list">
+      <h2>Results</h2>
+      {props.recipeList.map(recipe => <h3 className="recipe-list-item" key={recipe.uri} onClick={()=>{}}>{recipe.label}</h3>)}
     </div>
   );
 
