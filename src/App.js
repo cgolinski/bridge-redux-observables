@@ -22,16 +22,31 @@ const App = props =>
       <p className="App-intro">
         <button onClick={() => props.getRecipeByName('omelet')}>Click me for Omelet</button>
       </p>
-      <p>
-        <input type="text" placeholder="enter ingredient" value={props.searchFieldValue} onChange={props.updateSearchFieldValue} />
-        <span>{props.searchFieldValue}</span>
-        <button 
-          type="button" 
-          onClick={() => submitSearch(props.searchFieldValue, props.getRecipeByName)}
+      <Search 
+        searchFieldValue={props.searchFieldValue}
+        updateSearchFieldValue={props.updateSearchFieldValue}
+        getRecipeByName={props.getRecipeByName}
+      />
+      <RecipeList 
+        recipeList={props.recipeList}
+      />
+    </div>
+  );
 
+const Search = props =>
+  (
+    <div className="searchContainer">
+      <input type="text" placeholder="enter ingredient" value={props.searchFieldValue} onChange={props.updateSearchFieldValue} />
+      <button 
+        type="button" 
+        onClick={() => submitSearch(props.searchFieldValue, props.getRecipeByName)}
+      >Search</button>
+    </div>
+  );
 
-        >submit</button>
-      </p>
+const RecipeList = props =>
+  (
+    <div>
       {props.recipeList.map(recipe => <h3 key={recipe.uri}>name: {recipe.label} calories: {recipe.calories}</h3>)}
     </div>
   );
@@ -40,6 +55,9 @@ const App = props =>
 //Make each recipe title clickable
 //When click on recipe, set as selected recipe in state
 //which automatically renders detailed recipe component
+
+//QUESTIONS:
+//Why is there an error in the console: 'synthetic event is reused...'
 
 const connectConfig = connect(state => ({
   test: 'foo', // how could I potentially apply the value of the reducer on line 6 of reducers/index.js?
