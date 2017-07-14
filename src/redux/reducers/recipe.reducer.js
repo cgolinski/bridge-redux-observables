@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
   list: [],
   isError: false,
   searchFieldValue: '',
-  selectedRecipe: null,
+  selectedRecipeId: null,
 };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -15,8 +15,7 @@ export default (state = DEFAULT_STATE, action) => {
     // an epic! By the time this action fires, the api request is completed successfully
     // check recipe.epics.js to see where this action is being created
     case RECIPE_ACTIONS.RECIPES_RECEIVED_SUCCESS:
-      return {...state, list: action.payload, isError: false };
-
+      return { ...state, list: action.payload, isError: false };
 
       // We'll handle errors on a later date :) but if you feel like you might have an idea, or want to try it on your own...
       // https://github.com/redux-observable/redux-observable/blob/master/docs/recipes/ErrorHandling.md
@@ -26,10 +25,15 @@ export default (state = DEFAULT_STATE, action) => {
     case RECIPE_ACTIONS.UPDATE_SEARCH_FIELD_VALUE:
       return { ...state, searchFieldValue: action.payload.target.value };
 
-    case RECIPE_ACTIONS.SET_SELECTED_RECIPE:
-      return { ...state, selectedRecipe: action.payload}; 
+    case RECIPE_ACTIONS.SET_SELECTED_RECIPE_ID:
+      return { ...state, selectedRecipeId: action.payload}; 
 
     default:
       return state;
   }
 };
+
+export const selectedRecipeDetail = (state) => {
+  return state.recipe.list.filter(recipe => recipe.uri === state.recipe.selectedRecipeId)[0];
+};
+

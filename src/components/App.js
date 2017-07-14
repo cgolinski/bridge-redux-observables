@@ -4,8 +4,8 @@ import { RecipeList } from './RecipeList';
 import { RecipeDetail } from './RecipeDetail';
 import '../App.css';
 import { connect } from 'react-redux';
-import { getRecipeByName, updateSearchFieldValue, setSelectedRecipe } from '../redux/actions/recipe.actions';
-// import { updateSearchFieldValue, setSelectedRecipe } from '../redux/actions/search.actions';
+import { getRecipeByName, updateSearchFieldValue, setSelectedRecipeId } from '../redux/actions/recipe.actions';
+import { selectedRecipeDetail } from '../redux/reducers/recipe.reducer.js';
 
 
 // remember, props should now have data coming in from redux state!
@@ -28,12 +28,13 @@ const App = props =>
       />
       <RecipeList 
         recipeList={props.recipeList}
-        setSelectedRecipe={props.setSelectedRecipe}
+        setSelectedRecipeId={props.setSelectedRecipeId}
       />
-      {props.selectedRecipe 
+      {props.selectedRecipeDetail
         ? <RecipeDetail 
             recipeList={props.recipeList}
-            selectedRecipe={props.selectedRecipe}
+            selectedRecipeId={props.selectedRecipeId}
+            selectedRecipeDetail={props.selectedRecipeDetail}
           /> 
         : null}
     </div>
@@ -54,11 +55,13 @@ const connectConfig = connect(state => ({
   test: 'foo', // how could I potentially apply the value of the reducer on line 6 of reducers/index.js?
   recipeList: state.recipe.list,
   searchFieldValue: state.recipe.searchFieldValue,
-  selectedRecipe: state.recipe.selectedRecipe,
+  selectedRecipeId: state.recipe.selectedRecipeId,
+
+  selectedRecipeDetail: selectedRecipeDetail(state),
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
   updateSearchFieldValue: updateSearchFieldValue,
-  setSelectedRecipe: setSelectedRecipe,
+  setSelectedRecipeId: setSelectedRecipeId,
 });
 
 

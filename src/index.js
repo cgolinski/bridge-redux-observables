@@ -15,7 +15,7 @@ const loggerMiddleware = createLogger();
 
 const store = createStore(
   rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), //CG: this is the new line
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   // you should try adding the redux-logger middleware!
   applyMiddleware(createEpicMiddleware(rootEpic), loggerMiddleware)
 );
