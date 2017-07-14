@@ -1,6 +1,6 @@
 import combineReducers from 'redux/es/combineReducers';
 import recipeReducer from './recipe.reducer';
-import searchReducer from './search.reducer';
+// import searchReducer from './search.reducer';
 
 
 
@@ -9,7 +9,7 @@ import searchReducer from './search.reducer';
 // but keep it as flat as possible!
 export default combineReducers({
   recipe: recipeReducer,
-  search: searchReducer,
+  // search: searchReducer,
   testReducer: (state = 'foobar', action) => state // a boring reducer just to illustrate combine reducer
 });
 
