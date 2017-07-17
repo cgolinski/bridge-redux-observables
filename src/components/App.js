@@ -11,7 +11,7 @@ import { selectedRecipeDetail } from '../redux/reducers/recipe.reducer.js';
 // remember, props should now have data coming in from redux state!
 // because of this, we don't even need to make our 'top level' components stateful!
 //const App = ({recipeList, getRecipeByName})
-const App = props =>
+export const App = props =>
   (
     <div className="App">
       <div className="App-header">
@@ -43,10 +43,7 @@ const App = props =>
 
 
 //TO DO:
-//Should I save the entire recipe to selectedRecipe instead of just the key? Would that be faster to load, rather than mapping through the entire recipeList?
-//...or would that be un-DRY?
-  //Leave it as is. Convert array of recipe objects to be object of recipe objects
-  //...with each recipe object represented by its key (copy of key inside object)
+
 
 //QUESTIONS:
 //Why is there an error in the console: 'synthetic event is reused...'
@@ -56,7 +53,6 @@ const connectConfig = connect(state => ({
   recipeList: state.recipe.list,
   searchFieldValue: state.recipe.searchFieldValue,
   selectedRecipeId: state.recipe.selectedRecipeId,
-
   selectedRecipeDetail: selectedRecipeDetail(state),
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
