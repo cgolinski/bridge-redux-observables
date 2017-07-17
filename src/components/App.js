@@ -26,17 +26,29 @@ export const App = props =>
         updateSearchFieldValue={props.updateSearchFieldValue}
         getRecipeByName={props.getRecipeByName}
       />
-      <RecipeList 
-        recipeList={props.recipeList}
-        setSelectedRecipeId={props.setSelectedRecipeId}
-      />
-      {props.selectedRecipeDetail
+      {
+        props.isError
+        ? <p> There was an error. Please try again. </p>
+        : null
+      }
+      {
+        props.recipeList.length > 0
+        ? <RecipeList 
+            recipeList={props.recipeList}
+            setSelectedRecipeId={props.setSelectedRecipeId}
+            isError={props.isError}
+          />
+        : null
+      } 
+      {
+        props.selectedRecipeDetail
         ? <RecipeDetail 
             recipeList={props.recipeList}
             selectedRecipeId={props.selectedRecipeId}
             selectedRecipeDetail={props.selectedRecipeDetail}
           /> 
-        : null}
+        : null
+      }
     </div>
   );
 
@@ -54,6 +66,7 @@ const connectConfig = connect(state => ({
   searchFieldValue: state.recipe.searchFieldValue,
   selectedRecipeId: state.recipe.selectedRecipeId,
   selectedRecipeDetail: selectedRecipeDetail(state),
+  isError: state.recipe.isError,
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
   updateSearchFieldValue: updateSearchFieldValue,

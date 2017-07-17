@@ -50,6 +50,9 @@ export const getRecipeByNameEpic = action$ =>
           // feel free to explore the full response!
           payload: response.hits.map(hit => hit.recipe),
         }))
-
-
+        .catch(error => Observable.of({
+          type: RECIPE_ACTIONS.RECIPES_RECEIVED_ERROR,
+          payload: error.xhr.response,
+          error: true,
+        }))
     );
