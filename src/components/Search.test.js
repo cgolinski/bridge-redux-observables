@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import { Search } from './Search';
+import { Search, submitSearch } from './Search';
 
 it('renders without crashing', () => {
   const props = {
@@ -14,7 +14,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<Search {...props} />, div);
 });
 
-it('renders correct number of child nodes', () => {
+it('renders correct number of input child nodes', () => {
   const props = {
     setSearchType: () => {},
   };
@@ -37,4 +37,22 @@ it('renders correct input value', () => {
   ));
 
   expect(wrapper.find('input').at(0).props().value).toBe('pie');
+});
+
+it('submitSearch switches on searchType (name) correctly', () => {
+  const searchFieldValue = '';
+  const searchType = 'name'; 
+  const getRecipeByName = () => {};
+  const getRecipeByCalories = () => {};
+
+  expect(submitSearch(searchFieldValue, searchType, getRecipeByName, getRecipeByCalories)).toBe(getRecipeByName(searchFieldValue));
+});
+
+it('submitSearch switches on searchType (maxCalories) correctly', () => {
+  const searchFieldValue = '';
+  const searchType = 'maxCalories'; 
+  const getRecipeByName = () => {};
+  const getRecipeByCalories = () => {};
+
+  expect(submitSearch(searchFieldValue, searchType, getRecipeByName, getRecipeByCalories)).toBe(getRecipeByCalories(searchFieldValue));
 });

@@ -43,7 +43,7 @@ export const App = props =>
       />
       {
         props.isError
-        ? <p> There was an error. Please try again. </p>
+        ? <p className="error-message"> There was an error. Please try again. </p>
         : null
       }
       {

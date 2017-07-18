@@ -1,6 +1,6 @@
 import React from 'react';
 
-const submitSearch = (searchFieldValue, searchType, getRecipeByName, getRecipeByCalories) => {
+export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getRecipeByCalories) => {
   
   switch(searchType) {
     case 'name':
