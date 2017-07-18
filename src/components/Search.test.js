@@ -7,6 +7,7 @@ it('renders without crashing', () => {
   const props = {
     searchFieldValue: 'pie',
     updateSearchFieldValue: () => {},
+    setSearchType: () => {},
   };
 
   const div = document.createElement('div');
@@ -14,21 +15,26 @@ it('renders without crashing', () => {
 });
 
 it('renders correct number of child nodes', () => {
+  const props = {
+    setSearchType: () => {},
+  };
+
   const wrapper = shallow ((
-    <Search />
+    <Search {...props} />
   ));
 
-  expect(wrapper.find('input')).toHaveLength(1);
+  expect(wrapper.find('input')).toHaveLength(4);
 });
 
 it('renders correct input value', () => {
   const props = {
     searchFieldValue: 'pie',
+    setSearchType: () => {},
   };
 
   const wrapper = shallow ((
     <Search {...props}/>
   ));
 
-  expect(wrapper.find('input').props().value).toBe('pie');
+  expect(wrapper.find('input').at(0).props().value).toBe('pie');
 });

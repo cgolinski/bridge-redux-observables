@@ -1,3 +1,15 @@
+//TO DO: 
+//Add tests for all conditional rendering in components 
+//Filter by calories locally, after getting back API request (API calories not working)
+//Add test for filtering by calpories
+//Search by ingredient
+//Add test for searching by ingredient
+
+//QUESTIONS:
+//Why is there an error in the console: 'synthetic event is reused...'
+//Are epic errors set up correctly?
+
+
 import React from 'react';
 import { Search } from './Search';
 import { RecipeList } from './RecipeList';
@@ -54,14 +66,6 @@ export const App = props =>
       }
     </div>
   );
-
-
-
-//TO DO:
-
-
-//QUESTIONS:
-//Why is there an error in the console: 'synthetic event is reused...'
 
 const connectConfig = connect(state => ({
   test: 'foo', // how could I potentially apply the value of the reducer on line 6 of reducers/index.js?

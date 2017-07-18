@@ -14,9 +14,13 @@ it('renders without crashing', () => {
     searchFieldValue: 'pie',
     selectedRecipeId: 'www.recipe.com',
     selectedRecipeDetail: {uri: 'www.recipe.com', label: 'Pumpkin Pie', image: 'www.image.com', url: 'www.recipeorigin.com', ingredientLines: ['a', 'b']},
+    isError: false,
+    searchType: 'name',
     getRecipeByName: () => {},
+    getRecipeByCalories: () => {},
     updateSearchFieldValue: () => {},
     setSelectedRecipeId: () => {},
+    setSearchType: () => {},
   };
 
   const div = document.createElement('div');
@@ -24,15 +28,31 @@ it('renders without crashing', () => {
 });
 
 it('renders child node: Search', () => {
+  const props = {
+    searchFieldValue: 'a',
+    updateSearchFieldValue: () => {},
+    getRecipeByName: () => {},
+    getRecipeByCalories: () => {},
+    searchType: 'a',
+    setSearchType: () => {},
+    recipeList: [],
+  };
+
   const wrapper = shallow((
-    <App />
+    <App {...props} />
   ));
   expect(wrapper.find(Search)).toHaveLength(1);
 });
 
 it('renders child node: RecipeList', () => {
+  const props = {
+    recipeList: [{uri: 'www.recipe.com', label: 'Pumpkin Pie', image: 'www.image.com', url: 'www.recipeorigin.com', ingredientLines: ['a', 'b']}, {uri: 'www.recipe.com2', label: 'Pumpkin Pie2', image: 'www.image.com2', url: 'www.recipeorigin.com2', ingredientLines: ['a2', 'b2']}],
+    isError: false,
+    setSelectedRecipeId: () => {},  
+  };
+
   const wrapper = shallow((
-    <App />
+    <App {...props} />
   ));
   expect(wrapper.find(RecipeList)).toHaveLength(1);
 });
@@ -40,6 +60,8 @@ it('renders child node: RecipeList', () => {
 it('renders child node, RecipeDetail, when selectedRecipeDetail prop is received and truthy', () => {
   const props = {
     selectedRecipeDetail: {uri: 'www.recipe.com', label: 'Pumpkin Pie', image: 'www.image.com', url: 'www.recipeorigin.com', ingredientLines: ['a', 'b']},
+    recipeList: [{uri: 'www.recipe.com', label: 'Pumpkin Pie', image: 'www.image.com', url: 'www.recipeorigin.com', ingredientLines: ['a', 'b']}, {uri: 'www.recipe.com2', label: 'Pumpkin Pie2', image: 'www.image.com2', url: 'www.recipeorigin.com2', ingredientLines: ['a2', 'b2']}],
+    selectedRecipeID: 'www.',
   };
 
   const wrapper = shallow((
@@ -51,6 +73,8 @@ it('renders child node, RecipeDetail, when selectedRecipeDetail prop is received
 it('should not render child node, RecipeDetail, when selectedRecipeDetail prop is received and falsey', () => {
   const props = {
     selectedRecipeDetail: null,
+    recipeList: [{uri: 'www.recipe.com', label: 'Pumpkin Pie', image: 'www.image.com', url: 'www.recipeorigin.com', ingredientLines: ['a', 'b']}, {uri: 'www.recipe.com2', label: 'Pumpkin Pie2', image: 'www.image.com2', url: 'www.recipeorigin.com2', ingredientLines: ['a2', 'b2']}],
+    selectedRecipeID: 'www.',
   };
 
   const wrapper = shallow((
