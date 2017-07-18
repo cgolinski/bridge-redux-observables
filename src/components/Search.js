@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getRecipeByCalories) => {
+export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getRecipeByCalories, getAllRecipes) => {
   
   switch(searchType) {
     case 'name':
@@ -10,7 +10,7 @@ export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getR
       return getRecipeByCalories(searchFieldValue);
 
     case 'ingredient':
-      return getRecipeByName();
+      return getAllRecipes();
 
     default:
       return getRecipeByName(searchFieldValue);
@@ -23,7 +23,7 @@ export const Search = props =>
       <input type="text" value={props.searchFieldValue} onChange={props.updateSearchFieldValue} />
       <button
         type="button"
-        onClick={() => submitSearch(props.searchFieldValue, props.searchType, props.getRecipeByName, props.getRecipeByCalories)}
+        onClick={() => submitSearch(props.searchFieldValue, props.searchType, props.getRecipeByName, props.getRecipeByCalories, props.getAllRecipes)}
       >Search</button>
       <div>
         Search by:

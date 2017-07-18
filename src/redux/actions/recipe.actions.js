@@ -5,6 +5,7 @@ export const RECIPE_ACTIONS = {
   SET_SELECTED_RECIPE_ID: 'SET_SELECTED_RECIPE_ID',
   SET_SEARCH_TYPE: 'SET_SEARCH_TYPE',
   GET_RECIPES_BY_CALORIES: 'GET_RECIPES_BY_CALORIES',
+  GET_ALL_RECIPES: 'GET_ALL_RECIPES',
 
 
   // epic actions
@@ -12,7 +13,7 @@ export const RECIPE_ACTIONS = {
   RECIPES_RECEIVED_ERROR: 'RECIPES_RECEIVED_ERROR',
 };
 
-export const getRecipeByName = (recipeName = '') => ({
+export const getRecipeByName = (recipeName) => ({
   type: RECIPE_ACTIONS.GET_RECIPES_BY_NAME,
   payload: recipeName
 });
@@ -35,4 +36,9 @@ export const setSearchType = value => ({
 export const getRecipeByCalories = maxCalories => ({
   type: RECIPE_ACTIONS.GET_RECIPES_BY_CALORIES,
   payload: maxCalories
+});
+
+export const getAllRecipes = () => ({
+  type: RECIPE_ACTIONS.GET_RECIPES_BY_CALORIES,
+  payload: null
 });

@@ -71,3 +71,19 @@ export const getRecipeByCaloriesEpic = action$ =>
           error: true,
         }))
     );
+
+export const getAllRecipesEpic = action$ =>
+  action$.ofType(RECIPE_ACTIONS.GET_ALL_RECIPES)
+    .mergeMap(() =>
+      Observable.ajax(`${BASE_ENDPOINT}&q=&calories=gte%200`)
+        .map(({ response }) => ({
+          type: RECIPE_ACTIONS.RECIPES_RECEIVED_SUCCESS,
+          payload: response.hits.map(hit => hit.recipe),
+        }))
+        .catch(error => Observable.of({
+          type: RECIPE_ACTIONS.RECIPES_RECEIVED_ERROR,
+          payload: error.xhr.response,
+          error: true,
+        }))
+    );
+

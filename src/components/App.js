@@ -1,5 +1,9 @@
 //TO DO: 
 //Search by ingredient
+  //in order to return a list of recipes
+  //make a new epic: search by ingredient, that is the same as search by calories
+  //but takes gte=0 (gte%200)
+    //seems to be calling getbyCalorie not getAllRecipes. Not sure why
 //Add test for searching by ingredient
 //Add/remove unit test for any other changes
 
@@ -14,7 +18,7 @@ import { RecipeList } from './RecipeList';
 import { RecipeDetail } from './RecipeDetail';
 import '../App.css';
 import { connect } from 'react-redux';
-import { getRecipeByName, getRecipeByCalories, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
+import { getRecipeByName, getRecipeByCalories, getAllRecipes, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
 import { selectedRecipeDetail } from '../redux/reducers/recipe.reducer.js';
 
 
@@ -36,6 +40,7 @@ export const App = props =>
         updateSearchFieldValue={props.updateSearchFieldValue}
         getRecipeByName={props.getRecipeByName}
         getRecipeByCalories={props.getRecipeByCalories}
+        getAllRecipes={props.getAllRecipes}
         searchType={props.searchType}
         setSearchType={props.setSearchType}
       />
@@ -78,6 +83,7 @@ const connectConfig = connect(state => ({
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
   getRecipeByCalories: getRecipeByCalories,
+  getAllRecipes: getAllRecipes,
   updateSearchFieldValue: updateSearchFieldValue,
   setSelectedRecipeId: setSelectedRecipeId,
   setSearchType: setSearchType,
