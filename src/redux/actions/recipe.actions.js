@@ -3,6 +3,9 @@ export const RECIPE_ACTIONS = {
   GET_RECIPES_BY_NAME: 'GET_RECIPES_BY_NAME',
   UPDATE_SEARCH_FIELD_VALUE: 'UPDATE_SEARCH_FIELD_VALUE',
   SET_SELECTED_RECIPE_ID: 'SET_SELECTED_RECIPE_ID',
+  SET_SEARCH_TYPE: 'SET_SEARCH_TYPE',
+  GET_RECIPES_BY_CALORIES: 'GET_RECIPES_BY_CALORIES',
+
 
   // epic actions
   RECIPES_RECEIVED_SUCCESS: 'RECIPES_RECEIVED_SUCCESS',
@@ -22,4 +25,14 @@ export const updateSearchFieldValue = searchFieldValue => ({
 export const setSelectedRecipeId = selectedRecipeId => ({
   type: RECIPE_ACTIONS.SET_SELECTED_RECIPE_ID,
   payload: selectedRecipeId
+});
+
+export const setSearchType = value => ({
+  type: RECIPE_ACTIONS.SET_SEARCH_TYPE,
+  payload: value
+});
+
+export const getRecipeByCalories = maxCalories => ({
+  type: RECIPE_ACTIONS.GET_RECIPES_BY_CALORIES,
+  payload: maxCalories
 });

@@ -3,8 +3,9 @@ import { RECIPE_ACTIONS } from '../actions/recipe.actions';
 const DEFAULT_STATE = {
   list: [],
   isError: false,
-  searchFieldValue: '',
+  searchFieldValue: null,
   selectedRecipeId: null,
+  searchType: null,
 };
 
 export default (state = DEFAULT_STATE, action) => {
@@ -26,7 +27,10 @@ export default (state = DEFAULT_STATE, action) => {
       return { ...state, searchFieldValue: action.payload.target.value };
 
     case RECIPE_ACTIONS.SET_SELECTED_RECIPE_ID:
-      return { ...state, selectedRecipeId: action.payload}; 
+      return { ...state, selectedRecipeId: action.payload };
+
+    case RECIPE_ACTIONS.SET_SEARCH_TYPE:
+      return { ...state, searchType: action.payload }; 
 
     default:
       return state;

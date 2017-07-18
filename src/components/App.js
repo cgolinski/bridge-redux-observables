@@ -4,7 +4,7 @@ import { RecipeList } from './RecipeList';
 import { RecipeDetail } from './RecipeDetail';
 import '../App.css';
 import { connect } from 'react-redux';
-import { getRecipeByName, updateSearchFieldValue, setSelectedRecipeId } from '../redux/actions/recipe.actions';
+import { getRecipeByName, getRecipeByCalories, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
 import { selectedRecipeDetail } from '../redux/reducers/recipe.reducer.js';
 
 
@@ -25,6 +25,9 @@ export const App = props =>
         searchFieldValue={props.searchFieldValue}
         updateSearchFieldValue={props.updateSearchFieldValue}
         getRecipeByName={props.getRecipeByName}
+        getRecipeByCalories={props.getRecipeByCalories}
+        searchType={props.searchType}
+        setSearchType={props.setSearchType}
       />
       {
         props.isError
@@ -67,10 +70,13 @@ const connectConfig = connect(state => ({
   selectedRecipeId: state.recipe.selectedRecipeId,
   selectedRecipeDetail: selectedRecipeDetail(state),
   isError: state.recipe.isError,
+  searchType: state.recipe.searchType,
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
+  getRecipeByCalories: getRecipeByCalories,
   updateSearchFieldValue: updateSearchFieldValue,
   setSelectedRecipeId: setSelectedRecipeId,
+  setSearchType: setSearchType,
 });
 
 

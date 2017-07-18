@@ -17,13 +17,13 @@ const BASE_ENDPOINT = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${
 
 
 
-// you may want to remove comments when you work on this, at least temporarily, if it becomes too bloated to read
+//you may want to remove comments when you work on this, at least temporarily, if it becomes too bloated to read
 
 export const getRecipeByNameEpic = action$ =>
 
   // the action$ object here is special, and hears ALL actions tha go through, like a reducer
   // ofType waits for a very specific action, and when it does, it allows everything after to fire
- // thing of ofType like an if statement - if the action is ofType [x] - then do!
+  // thing of ofType like an if statement - if the action is ofType [x] - then do!
   action$.ofType(RECIPE_ACTIONS.GET_RECIPES_BY_NAME)
     .mergeMap(action =>
 
@@ -48,6 +48,21 @@ export const getRecipeByNameEpic = action$ =>
           // so I do a little mapping over them to make them into something more consumable before I
           // send them off to my reducer
           // feel free to explore the full response!
+          payload: response.hits.map(hit => hit.recipe),
+        }))
+        .catch(error => Observable.of({
+          type: RECIPE_ACTIONS.RECIPES_RECEIVED_ERROR,
+          payload: error.xhr.response,
+          error: true,
+        }))
+    );
+
+export const getRecipeByCaloriesEpic = action$ =>
+  action$.ofType(RECIPE_ACTIONS.GET_RECIPES_BY_CALORIES)
+    .mergeMap(action =>
+      Observable.ajax(`${BASE_ENDPOINT}&q=&calories=lte%20${action.payload}`)
+        .map(({ response }) => ({
+          type: RECIPE_ACTIONS.RECIPES_RECEIVED_SUCCESS,
           payload: response.hits.map(hit => hit.recipe),
         }))
         .catch(error => Observable.of({
