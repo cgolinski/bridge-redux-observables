@@ -1,9 +1,7 @@
 //TO DO: 
-//Add tests for all conditional rendering in components 
-//Filter by calories locally, after getting back API request (API calories not working)
-//Add test for filtering by calpories
 //Search by ingredient
 //Add test for searching by ingredient
+//Add/remove unit test for any other changes
 
 //QUESTIONS:
 //Why is there an error in the console: 'synthetic event is reused...'

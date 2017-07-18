@@ -22,6 +22,7 @@ it('renders correct number of child nodes when props received', () => {
   const wrapper = shallow((
     <RecipeList {...props}/>
   ));
+
   expect(wrapper.find('.recipe-list-item')).toHaveLength(2);
 });
 
@@ -33,5 +34,20 @@ it('renders correct number of child nodes when recipeList prop is empty', () => 
   const wrapper = shallow((
     <RecipeList {...props}/>
   ));
+
   expect(wrapper.find('.recipe-list-item')).toHaveLength(0);
+});
+
+it('renders correct number of child nodes when searchType is calories', () => {
+  const props = {
+    recipeList: [{uri: 'www.', label: 'Pie', image: 'www.', url: 'www.', ingredientLines: ['a', 'b'], calories: 200, yield: 2}, {uri: 'www.', label: 'Pie', image: 'www.', url: 'www.', ingredientLines: ['a', 'b'], calories: 1000, yield: 3}],
+    searchFieldValue: 100, 
+    searchType: 'calories',
+  };
+
+  const wrapper = shallow ((
+    <RecipeList {...props} />
+  ));
+
+  expect(wrapper.find('.recipe-list-item')).toHaveLength(1);
 });
