@@ -10,24 +10,19 @@ export const RecipeList = props =>
               recipe.calories / recipe.yield <= props.searchFieldValue
                 ? <h3 className="recipe-list-item" key={recipe.uri} onClick={()=>props.setSelectedRecipeId(recipe.uri)}>{recipe.label}</h3>
                 : null)
-          // : props.searchType === 'ingredient'
-          //   ? props.recipeList
-          //     .filter(recipe => recipe.ingredientLines
-          //       .map(ingredient => ingredient.includes(props.searchFieldValue)))
-          //     .map(recipe => 
-          //       <h3 
-          //         className="recipe-list-item" 
-          //         key={recipe.uri} 
-          //         onClick={()=>props.setSelectedRecipeId(recipe.uri)}
-          //       >{recipe.label}</h3>)
+          : props.searchType === 'ingredient'
+            ? props.recipeList
+              .filter(recipe => recipe.ingredientLines
+                .map(ingredient => ingredient.includes(props.searchFieldValue)))
+              .map(recipe => 
+                <h3 
+                  className="recipe-list-item" 
+                  key={recipe.uri} 
+                  onClick={()=>props.setSelectedRecipeId(recipe.uri)}
+                >{recipe.label}</h3>)
             : props.searchType === 'name'
               ? props.recipeList.map(recipe => <h3 className="recipe-list-item" key={recipe.uri} onClick={()=>props.setSelectedRecipeId(recipe.uri)}>{recipe.label}</h3>)
               : null
       }
     </div>
   );
-
-  //list []
-    //ingredientLines []
-      //filter .includes
-
