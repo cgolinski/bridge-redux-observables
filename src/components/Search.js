@@ -9,10 +9,10 @@ export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getR
     case 'maxCalories':
       return getRecipeByCalories(searchFieldValue);
 
-    case 'ingredient':
-      return getRecipeByName(searchFieldValue); //change to ingredients
+    // case 'ingredient':
+    //   return getRecipeByName();
 
-     default:
+    default:
       return getRecipeByName(searchFieldValue);
   }
 };
@@ -45,7 +45,7 @@ export const Search = props =>
           />
           max calories
         </label>
-        <label>
+        {/*<label>
           <input 
             name="searchTypeSelector" 
             type="radio" 
@@ -53,7 +53,7 @@ export const Search = props =>
             onClick={props.setSearchType.bind(null, 'ingredient')} 
           />
           ingredient
-        </label>
+        </label>*/}
       </div>
     </div>
   );

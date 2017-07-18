@@ -12,7 +12,7 @@ export const RECIPE_ACTIONS = {
   RECIPES_RECEIVED_ERROR: 'RECIPES_RECEIVED_ERROR',
 };
 
-export const getRecipeByName = recipeName => ({
+export const getRecipeByName = (recipeName = '') => ({
   type: RECIPE_ACTIONS.GET_RECIPES_BY_NAME,
   payload: recipeName
 });

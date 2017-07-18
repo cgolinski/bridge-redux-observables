@@ -50,6 +50,8 @@ export const App = props =>
             recipeList={props.recipeList}
             setSelectedRecipeId={props.setSelectedRecipeId}
             isError={props.isError}
+            searchType={props.searchType}
+            searchFieldValue={props.searchFieldValue}
           />
         : null
       } 
