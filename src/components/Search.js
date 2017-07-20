@@ -20,7 +20,7 @@ export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getR
 export const Search = props =>
   (
     <div className="Search-container">
-      <input type="text" value={props.searchFieldValue} onChange={props.updateSearchFieldValue} />
+      <input type="text" value={props.searchFieldValue} onChange={ev => props.updateSearchFieldValue(ev.target.value)} />
       <button
         type="button"
         onClick={() => submitSearch(props.searchFieldValue, props.searchType, props.getRecipeByName, props.getRecipeByCalories)}
