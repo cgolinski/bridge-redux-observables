@@ -1,4 +1,10 @@
 //TO DO: 
+//Update search input field onchange:
+  //onChange={props.setSearchField} 
+  //(above) this way the reducer needs to access ev.target.value. But reducer is not supposed to manipulate data, it’s only ever supposed to store stuff to state.
+  //onChange={ev => props.setSearchField(ev.target.value)}
+  //(above) so this way is better, and then the reducer can just searchFieldValue: action.payload
+
 //Search by ingredient
   //in order to return a list of recipes
   //make a new epic: search by ingredient, that is the same as search by calories
