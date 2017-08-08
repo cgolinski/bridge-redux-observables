@@ -1,11 +1,7 @@
 //TO DO: 
-//Add test for searching by ingredient
+//Add tests for reducers
+//Add tests for epics
 //Add/remove unit test for any other changes
-
-//QUESTIONS:
-//Why is there an error in the console: 'synthetic event is reused...'
-//Are epic errors set up correctly?
-
 
 import React from 'react';
 import { Search } from './Search';

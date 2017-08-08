@@ -1,6 +1,6 @@
 import { RECIPE_ACTIONS } from '../actions/recipe.actions';
 
-const DEFAULT_STATE = {
+export const DEFAULT_STATE = {
   list: [],
   isError: false,
   searchFieldValue: null,
