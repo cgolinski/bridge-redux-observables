@@ -19,7 +19,7 @@ const BASE_ENDPOINT = `https://api.edamam.com/search?app_id=${APP_ID}&app_key=${
 
 //you may want to remove comments when you work on this, at least temporarily, if it becomes too bloated to read
 
-export const getRecipeByNameEpic = action$ =>
+export const getRecipeByNameEpic = (action$, _, {ajax}) =>
 
   // the action$ object here is special, and hears ALL actions tha go through, like a reducer
   // ofType waits for a very specific action, and when it does, it allows everything after to fire
@@ -36,7 +36,7 @@ export const getRecipeByNameEpic = action$ =>
       // here we are saying, after I get the GET_RECIPES_BY_NAME action, I want to 'map'
       // the data from that action into this new request I make, but WAIT until it gets
       // back from the server
-      Observable.ajax(`${BASE_ENDPOINT}&q=${action.payload}`)
+      ajax(`${BASE_ENDPOINT}&q=${action.payload}`)
 
       // after it comes back from the server, send out this NEW action
       // this action is ONLY sent out when a successful response is reciped from the above ajax call
@@ -57,10 +57,10 @@ export const getRecipeByNameEpic = action$ =>
         }))
     );
 
-export const getRecipeByCaloriesEpic = action$ =>
+export const getRecipeByCaloriesEpic = (action$, _, {ajax}) =>
   action$.ofType(RECIPE_ACTIONS.GET_RECIPES_BY_CALORIES)
     .mergeMap(action =>
-      Observable.ajax(`${BASE_ENDPOINT}&q=&calories=lte%20${action.payload}`)
+      ajax(`${BASE_ENDPOINT}&q=&calories=lte%20${action.payload}`)
         .map(({ response }) => ({
           type: RECIPE_ACTIONS.RECIPES_RECEIVED_SUCCESS,
           payload: response.hits.map(hit => hit.recipe),
@@ -72,10 +72,10 @@ export const getRecipeByCaloriesEpic = action$ =>
         }))
     );
 
-export const getRecipesByIngredientEpic = action$ =>
+export const getRecipesByIngredientEpic = (action$, _, {ajax}) =>
   action$.ofType(RECIPE_ACTIONS.GET_RECIPES_BY_INGREDIENT)
     .mergeMap(action =>
-      Observable.ajax(`${BASE_ENDPOINT}&q=&calories=gte%200&to=10000`)
+      ajax(`${BASE_ENDPOINT}&q=&calories=gte%200&to=10000`)
         .map(({ response }) => ({
           type: RECIPE_ACTIONS.RECIPES_RECEIVED_SUCCESS,
           payload: response.hits
