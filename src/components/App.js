@@ -1,7 +1,3 @@
-//TO DO: 
-//Add tests for epics
-//Add/remove unit test for any other changes
-
 import React from 'react';
 import { Search } from './Search';
 import { RecipeList } from './RecipeList';
