@@ -72,13 +72,17 @@ export const getRecipeByCaloriesEpic = action$ =>
         }))
     );
 
-export const getAllRecipesEpic = action$ =>
-  action$.ofType(RECIPE_ACTIONS.GET_ALL_RECIPES)
-    .mergeMap(() =>
-      Observable.ajax(`${BASE_ENDPOINT}&q=&calories=gte%200`)
+export const getRecipesByIngredientEpic = action$ =>
+  action$.ofType(RECIPE_ACTIONS.GET_RECIPES_BY_INGREDIENT)
+    .mergeMap(action =>
+      Observable.ajax(`${BASE_ENDPOINT}&q=&calories=gte%200&to=10000`)
         .map(({ response }) => ({
           type: RECIPE_ACTIONS.RECIPES_RECEIVED_SUCCESS,
-          payload: response.hits.map(hit => hit.recipe),
+          payload: response.hits
+            .map(hit => hit.recipe)
+            .filter(recipe => 
+              recipe.ingredientLines.filter(ingredient => 
+                ingredient.toLowerCase().includes(action.payload)).length > 0)
         }))
         .catch(error => Observable.of({
           type: RECIPE_ACTIONS.RECIPES_RECEIVED_ERROR,
@@ -86,4 +90,3 @@ export const getAllRecipesEpic = action$ =>
           error: true,
         }))
     );
-

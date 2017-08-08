@@ -1,15 +1,9 @@
 //TO DO: 
-//Update search input field onchange:
-  //onChange={props.setSearchField} 
-  //(above) this way the reducer needs to access ev.target.value. But reducer is not supposed to manipulate data, it’s only ever supposed to store stuff to state.
-  //onChange={ev => props.setSearchField(ev.target.value)}
-  //(above) so this way is better, and then the reducer can just searchFieldValue: action.payload
-
 //Search by ingredient
   //in order to return a list of recipes
   //make a new epic: search by ingredient, that is the same as search by calories
   //but takes gte=0 (gte%200)
-    //seems to be calling getbyCalorie not getAllRecipes. Not sure why
+    //currently calling getbyCalorie not getAllRecipes because getAllRecipes action is not done
 //Add test for searching by ingredient
 //Add/remove unit test for any other changes
 
@@ -24,7 +18,7 @@ import { RecipeList } from './RecipeList';
 import { RecipeDetail } from './RecipeDetail';
 import '../App.css';
 import { connect } from 'react-redux';
-import { getRecipeByName, getRecipeByCalories, getAllRecipes, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
+import { getRecipeByName, getRecipeByCalories, getRecipesByIngredient, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
 import { selectedRecipeDetail } from '../redux/reducers/recipe.reducer.js';
 
 
@@ -46,7 +40,7 @@ export const App = props =>
         updateSearchFieldValue={props.updateSearchFieldValue}
         getRecipeByName={props.getRecipeByName}
         getRecipeByCalories={props.getRecipeByCalories}
-        getAllRecipes={props.getAllRecipes}
+        getRecipesByIngredient={props.getRecipesByIngredient}
         searchType={props.searchType}
         setSearchType={props.setSearchType}
       />
@@ -89,7 +83,7 @@ const connectConfig = connect(state => ({
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
   getRecipeByCalories: getRecipeByCalories,
-  getAllRecipes: getAllRecipes,
+  getRecipesByIngredient: getRecipesByIngredient,
   updateSearchFieldValue: updateSearchFieldValue,
   setSelectedRecipeId: setSelectedRecipeId,
   setSearchType: setSearchType,

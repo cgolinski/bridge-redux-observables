@@ -24,7 +24,7 @@ export default (state = DEFAULT_STATE, action) => {
       return {...state, list: [], isError: true };
 
     case RECIPE_ACTIONS.UPDATE_SEARCH_FIELD_VALUE:
-      return { ...state, searchFieldValue: action.payload.target.value };
+      return { ...state, searchFieldValue: action.payload };
 
     case RECIPE_ACTIONS.SET_SELECTED_RECIPE_ID:
       return { ...state, selectedRecipeId: action.payload };
