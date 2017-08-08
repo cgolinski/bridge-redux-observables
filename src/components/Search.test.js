@@ -39,13 +39,16 @@ it('renders correct input value', () => {
   expect(wrapper.find('input').at(0).props().value).toBe('pie');
 });
 
-it('submitSearch switches on searchType (name) correctly', () => {
+it('submitSearch switches on searchType correctly', () => {
   const searchFieldValue = '';
   const searchType = 'name'; 
   const getRecipeByName = () => {};
   const getRecipeByCalories = () => {};
+  const getRecipesByIngredient = () => {};
 
-  expect(submitSearch(searchFieldValue, searchType, getRecipeByName, getRecipeByCalories)).toBe(getRecipeByName(searchFieldValue));
+  expect(submitSearch(
+    searchFieldValue, searchType, getRecipeByName, getRecipeByCalories, getRecipesByIngredient
+  )).toBe(getRecipeByName(searchFieldValue));
 });
 
 it('submitSearch switches on searchType (maxCalories) correctly', () => {
@@ -53,6 +56,21 @@ it('submitSearch switches on searchType (maxCalories) correctly', () => {
   const searchType = 'maxCalories'; 
   const getRecipeByName = () => {};
   const getRecipeByCalories = () => {};
+  const getRecipesByIngredient = () => {};
 
-  expect(submitSearch(searchFieldValue, searchType, getRecipeByName, getRecipeByCalories)).toBe(getRecipeByCalories(searchFieldValue));
+  expect(submitSearch(
+    searchFieldValue, searchType, getRecipeByName, getRecipeByCalories, getRecipesByIngredient
+  )).toBe(getRecipeByCalories(searchFieldValue));
+});
+
+it('submitSearch switches on searchType (ingredient) correctly', () => {
+  const searchFieldValue = '';
+  const searchType = 'ingredient'; 
+  const getRecipeByName = () => {};
+  const getRecipeByCalories = () => {};
+  const getRecipesByIngredient = () => {};
+
+  expect(submitSearch(
+    searchFieldValue, searchType, getRecipeByName, getRecipeByCalories, getRecipesByIngredient
+  )).toBe(getRecipeByCalories(searchFieldValue));
 });

@@ -1,9 +1,4 @@
 //TO DO: 
-//Search by ingredient
-  //in order to return a list of recipes
-  //make a new epic: search by ingredient, that is the same as search by calories
-  //but takes gte=0 (gte%200)
-    //currently calling getbyCalorie not getAllRecipes because getAllRecipes action is not done
 //Add test for searching by ingredient
 //Add/remove unit test for any other changes
 
