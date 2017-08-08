@@ -25,6 +25,7 @@ export const Search = props =>
       <button
         type="button"
         onClick={() => submitSearch(props.searchFieldValue, props.searchType, props.getRecipeByName, props.getRecipeByCalories, props.getRecipesByIngredient)}
+        disabled={!props.searchFieldValue || !props.searchType}
       >Search</button>
       <div>
         Search by:
