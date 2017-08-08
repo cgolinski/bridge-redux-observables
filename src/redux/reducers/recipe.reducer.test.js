@@ -61,15 +61,3 @@ describe('recipeReducer test', () => {
     expect(recipeReducerState.isError).toBe(false);
   });
 });
-
-/*
-It should have initial state with some values in it.
-Expect recipeReducerState to be truthy
-Expect recipeReducerState.isError to be false
-Expect recipeReducerState.searchText to be “”
-
-It should update when the search text is available
-Expect recipeReducerState.searchText to be “”
-recipeReducerState = recipeReducer(recipeReducerState, {type: RECIPE_ACTIONS.UPDATE_SEARCH_TEXT, payload: ‘cake’})
-Expect recipeReducerState.searchText to be “cake”
-*/

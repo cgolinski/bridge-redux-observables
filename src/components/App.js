@@ -1,5 +1,4 @@
 //TO DO: 
-//Add tests for reducers
 //Add tests for epics
 //Add/remove unit test for any other changes
 
