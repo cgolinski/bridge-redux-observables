@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getRecipeByCalories) => {
+export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getRecipeByCalories, getRecipesByIngredient) => {
   
   switch(searchType) {
     case 'name':
@@ -9,8 +9,8 @@ export const submitSearch = (searchFieldValue, searchType, getRecipeByName, getR
     case 'maxCalories':
       return getRecipeByCalories(searchFieldValue);
 
-    // case 'ingredient':
-    //   return getRecipeByName();
+    case 'ingredient':
+      return getRecipesByIngredient(searchFieldValue);
 
     default:
       return getRecipeByName(searchFieldValue);
@@ -23,7 +23,8 @@ export const Search = props =>
       <input type="text" value={props.searchFieldValue} onChange={ev => props.updateSearchFieldValue(ev.target.value)} />
       <button
         type="button"
-        onClick={() => submitSearch(props.searchFieldValue, props.searchType, props.getRecipeByName, props.getRecipeByCalories)}
+        onClick={() => submitSearch(props.searchFieldValue, props.searchType, props.getRecipeByName, props.getRecipeByCalories, props.getRecipesByIngredient)}
+        disabled={!props.searchFieldValue || !props.searchType}
       >Search</button>
       <div>
         Search by:
@@ -45,7 +46,7 @@ export const Search = props =>
           />
           max calories
         </label>
-        {/*<label>
+        <label>
           <input 
             name="searchTypeSelector" 
             type="radio" 
@@ -53,7 +54,7 @@ export const Search = props =>
             onClick={props.setSearchType.bind(null, 'ingredient')} 
           />
           ingredient
-        </label>*/}
+        </label>
       </div>
     </div>
   );

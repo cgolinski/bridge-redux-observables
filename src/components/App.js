@@ -1,12 +1,6 @@
 //TO DO: 
-//Search by ingredient
-//Add test for searching by ingredient
+//Add tests for epics
 //Add/remove unit test for any other changes
-
-//QUESTIONS:
-//Why is there an error in the console: 'synthetic event is reused...'
-//Are epic errors set up correctly?
-
 
 import React from 'react';
 import { Search } from './Search';
@@ -14,7 +8,7 @@ import { RecipeList } from './RecipeList';
 import { RecipeDetail } from './RecipeDetail';
 import '../App.css';
 import { connect } from 'react-redux';
-import { getRecipeByName, getRecipeByCalories, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
+import { getRecipeByName, getRecipeByCalories, getRecipesByIngredient, updateSearchFieldValue, setSelectedRecipeId, setSearchType } from '../redux/actions/recipe.actions';
 import { selectedRecipeDetail } from '../redux/reducers/recipe.reducer.js';
 
 
@@ -36,6 +30,7 @@ export const App = props =>
         updateSearchFieldValue={props.updateSearchFieldValue}
         getRecipeByName={props.getRecipeByName}
         getRecipeByCalories={props.getRecipeByCalories}
+        getRecipesByIngredient={props.getRecipesByIngredient}
         searchType={props.searchType}
         setSearchType={props.setSearchType}
       />
@@ -78,6 +73,7 @@ const connectConfig = connect(state => ({
 }), {
   getRecipeByName: getRecipeByName, // how can we simplify this, do we remember?
   getRecipeByCalories: getRecipeByCalories,
+  getRecipesByIngredient: getRecipesByIngredient,
   updateSearchFieldValue: updateSearchFieldValue,
   setSelectedRecipeId: setSelectedRecipeId,
   setSearchType: setSearchType,
